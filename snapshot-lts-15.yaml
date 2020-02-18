@@ -1,5 +1,5 @@
-resolver: nightly-2020-02-15
-name: snapshot-for-building-stack-with-ghc-8.6.5
+resolver: lts-15.0
+name: snapshot-for-building-stack-with-ghc-8.8.2
 
 packages:
 - hpack-0.33.0

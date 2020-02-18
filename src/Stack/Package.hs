@@ -463,7 +463,7 @@ makeObjectFilePathFromC
 makeObjectFilePathFromC cabalDir namedComponent distDir cFilePath = do
     relCFilePath <- stripProperPrefix cabalDir cFilePath
     relOFilePath <-
-        parseRelFile (replaceExtension (toFilePath relCFilePath) "o")
+        parseRelFile (System.FilePath.replaceExtension (toFilePath relCFilePath) "o")
     return (componentOutputDir namedComponent distDir </> relOFilePath)
 
 -- | Make the global autogen dir if Cabal version is new enough.

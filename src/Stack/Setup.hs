@@ -859,7 +859,7 @@ buildGhcFromSource getSetupInfo' installed (CompilerRepository url) commitId fla
          (_,files) <- listDir (cwd </> bindistPath)
          let
            isBindist p = "ghc-" `isPrefixOf` (toFilePath (filename p))
-                         && fileExtension (filename p) == ".xz"
+                         && fileExtension (filename p) == Just ".xz"
            mbindist = filter isBindist files
          case mbindist of
            [bindist] -> do
