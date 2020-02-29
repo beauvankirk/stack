@@ -411,7 +411,7 @@ instance FromJSON CabalConfigKey where
 instance FromJSONKey CabalConfigKey where
   fromJSONKey = FromJSONKeyTextParser parseCabalConfigKey
 
-parseCabalConfigKey :: Monad m => Text -> m CabalConfigKey
+parseCabalConfigKey :: (Monad m, MonadFail m) => Text -> m CabalConfigKey
 parseCabalConfigKey "$targets" = pure CCKTargets
 parseCabalConfigKey "$locals" = pure CCKLocals
 parseCabalConfigKey "$everything" = pure CCKEverything
@@ -987,7 +987,7 @@ parseConfigMonoidObject rootDir obj = do
 
     return ConfigMonoid {..}
   where
-    handleExplicitSetupDep :: Monad m => (Text, Bool) -> m (Maybe PackageName, Bool)
+    handleExplicitSetupDep :: (Monad m, MonadFail m) => (Text, Bool) -> m (Maybe PackageName, Bool)
     handleExplicitSetupDep (name', b) = do
         name <-
             if name' == "*"

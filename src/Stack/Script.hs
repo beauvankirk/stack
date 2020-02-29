@@ -172,7 +172,7 @@ scriptCmd opts = do
 
   toExeName fp =
     if osIsWindows
-      then replaceExtension fp "exe"
+      then System.FilePath.replaceExtension fp "exe"
       else dropExtension fp
 
 getPackagesFromImports
